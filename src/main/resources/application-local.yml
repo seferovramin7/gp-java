@@ -1,0 +1,47 @@
+spring:
+  datasource:
+    url: jdbc:h2:mem:testdb
+    driverClassName: org.h2.Driver
+    username: sa
+    password:
+  jpa:
+    database-platform: org.hibernate.dialect.H2Dialect
+  h2:
+    console:
+      enabled: true
+
+server:
+  port: 8080
+  forward-headers-strategy: framework
+
+logging:
+  level:
+    ROOT: INFO
+
+  application:
+    name: ms-gp
+  # TIME ZONE
+  jackson:
+    time-zone: GMT
+    serialization:
+      write-dates-with-zone-id: true
+
+
+# App info
+info:
+  app:
+  name: GP API
+  description: API for GP
+
+access:
+  control:
+    allow:
+      origin: "*"
+
+url:
+  ignore:
+    swagger: /v2/api-docs, /webjars/**, /swagger-resources/**, /actuator/health, /swagger-ui/index.html, /swagger-ui.html, /app/**/*.{js,html}
+
+springdoc:
+  swagger-ui:
+    path: /swagger

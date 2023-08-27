@@ -1,0 +1,52 @@
+plugins {
+    id 'java'
+    id 'org.springframework.boot' version '3.1.1'
+    id 'io.spring.dependency-management' version '1.1.0'
+}
+
+group = 'com.gpapp'
+version = '0.0.1'
+
+java {
+    sourceCompatibility = '17'
+}
+
+configurations {
+    compileOnly {
+        extendsFrom annotationProcessor
+    }
+}
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    testImplementation group: 'junit', name: 'junit', version: '4.5'
+    implementation 'junit:junit:4.12'
+    testImplementation('org.springframework.boot:spring-boot-starter-test')
+
+    implementation 'org.springframework.boot:spring-boot-starter-data-jdbc'
+    implementation group: 'org.springframework.cloud', name: 'spring-cloud-starter-openfeign', version: '3.1.5'
+    implementation group: 'org.jsoup', name: 'jsoup', version: '1.16.1'
+    implementation group: 'org.postgresql', name: 'postgresql', version: '42.6.0'
+    implementation group: 'org.springdoc', name: 'springdoc-openapi-starter-webmvc-ui', version: '2.0.3'
+    implementation 'org.springframework.boot:spring-boot-starter-web'
+    implementation group: 'org.springframework.boot', name: 'spring-boot-starter-data-jpa', version: '3.1.1'
+    implementation group: 'org.springframework.boot', name: 'spring-boot-starter-thymeleaf', version: '3.1.2'
+    compileOnly 'org.projectlombok:lombok'
+    runtimeOnly 'com.h2database:h2'
+    annotationProcessor 'org.projectlombok:lombok'
+    testImplementation 'org.springframework.boot:spring-boot-starter-test'
+}
+bootJar {
+    archiveFileName = 'ms-gp.jar'
+    destinationDirectory = file("$buildDir/target")
+}
+
+test {
+    useJUnitPlatform()
+}
+wrapper {
+    gradleVersion = '6.0.1'
+}
